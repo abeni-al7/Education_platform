@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Add Assignment</h1>
+<form method="POST" action="" enctype="multipart/form-data">
+    <div class="form-group">
+        {{ form.title.label }}<br>
+        {{ form.title(size=32, class_="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.description.label }}<br>
+        {{ form.description(rows=5, class_="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.file.label }}<br>
+        {{ form.file(class_="form-control") }}
+    </div>
+    <input type="submit" value="Add Assignment" class="btn btn-primary">
+</form>
+{% endblock %}

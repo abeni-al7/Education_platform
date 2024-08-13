@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Admin Dashboard</h1>
+<h2>Courses</h2>
+<a href="{{ url_for('admin_add_course') }}" class="btn btn-success">Add Course</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Subject</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.title }}</td>
+            <td>{{ course.subject }}</td>
+            <td>
+                <a href="{{ url_for('admin_edit_course', id=course.id) }}" class="btn btn-primary">Edit</a>
+                <form action="{{ url_for('admin_delete_course', id=course.id) }}" method="POST" style="display:inline;">
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Teachers</h2>
+<a href="{{ url_for('admin_add_teacher') }}" class="btn btn-success">Add Teacher</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users if user.role == 'teacher' %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <a href="{{ url_for('admin_edit_teacher', id=user.id) }}" class="btn btn-primary">Edit</a>
+                <form action="{{ url_for('admin_delete_teacher', id=user.id) }}" method="POST" style="display:inline;">
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Students</h2>
+<a href="{{ url_for('admin_add_student') }}" class="btn btn-success">Add Student</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users if user.role == 'student' %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                <a href="{{ url_for('admin_edit_student', id=user.id) }}" class="btn btn-primary">Edit</a>
+                <form action="{{ url_for('admin_delete_student', id=user.id) }}" method="POST" style="display:inline;">
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

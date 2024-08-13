@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Submit Assignment</h1>
+<form method="POST" action="" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="file">Assignment File</label><br>
+        <input type="file" name="file" class="form-control">
+    </div>
+    <input type="submit" value="Submit Assignment" class="btn btn-primary">
+</form>
+{% endblock %}
